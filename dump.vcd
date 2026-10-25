@@ -1,0 +1,363 @@
+$date
+	Sun Oct 25 22:34:22 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module amr_fsm_simple_tb $end
+$var wire 12 ! y [12:1] $end
+$var reg 1 " clk $end
+$var reg 1 # rst $end
+$var reg 12 $ x [12:1] $end
+$scope module uut $end
+$var wire 1 " clk $end
+$var wire 1 # rst $end
+$var wire 12 % x [12:1] $end
+$var wire 12 & y [12:1] $end
+$var wire 3 ' partial_code [2:0] $end
+$var wire 4 ( class_code [3:0] $end
+$var parameter 32 ) K $end
+$var parameter 32 * REC $end
+$var parameter 32 + RS $end
+$var parameter 32 , RV $end
+$var parameter 7 - a1 $end
+$var parameter 7 . a10 $end
+$var parameter 7 / a11 $end
+$var parameter 7 0 a12 $end
+$var parameter 7 1 a13 $end
+$var parameter 7 2 a14 $end
+$var parameter 7 3 a15 $end
+$var parameter 7 4 a16 $end
+$var parameter 7 5 a17 $end
+$var parameter 7 6 a18 $end
+$var parameter 7 7 a19 $end
+$var parameter 7 8 a2 $end
+$var parameter 7 9 a20 $end
+$var parameter 7 : a21 $end
+$var parameter 7 ; a22 $end
+$var parameter 7 < a23 $end
+$var parameter 7 = a24 $end
+$var parameter 7 > a25 $end
+$var parameter 7 ? a26 $end
+$var parameter 7 @ a27 $end
+$var parameter 7 A a28 $end
+$var parameter 7 B a29 $end
+$var parameter 7 C a3 $end
+$var parameter 7 D a30 $end
+$var parameter 7 E a31 $end
+$var parameter 7 F a32 $end
+$var parameter 7 G a4 $end
+$var parameter 7 H a5 $end
+$var parameter 7 I a6 $end
+$var parameter 7 J a7 $end
+$var parameter 7 K a8 $end
+$var parameter 7 L a9 $end
+$var reg 7 M D0_partial [6:0] $end
+$var reg 7 N D1_partial [6:0] $end
+$var reg 7 O D2_partial [6:0] $end
+$var reg 7 P D3_partial [6:0] $end
+$var reg 7 Q D4_partial [6:0] $end
+$var reg 7 R D5_partial [6:0] $end
+$var reg 7 S D6_partial [6:0] $end
+$var reg 7 T D7_partial [6:0] $end
+$var reg 7 U D8_partial [6:0] $end
+$var reg 12 V Y0_partial [12:1] $end
+$var reg 12 W Y1_partial [12:1] $end
+$var reg 12 X Y2_partial [12:1] $end
+$var reg 12 Y Y3_partial [12:1] $end
+$var reg 12 Z Y4_partial [12:1] $end
+$var reg 12 [ Y5_partial [12:1] $end
+$var reg 12 \ Y6_partial [12:1] $end
+$var reg 12 ] Y7_partial [12:1] $end
+$var reg 12 ^ Y8_partial [12:1] $end
+$var reg 7 _ cs [6:0] $end
+$var reg 7 ` ns [6:0] $end
+$var reg 12 a y_comb [12:1] $end
+$var reg 12 b y_next_comb [12:1] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b11010 L
+b11 K
+b11011 J
+b10001 I
+b10 H
+b10000 G
+b1110 F
+b1101 E
+b1011 D
+b100011 C
+b110000 B
+b111000 A
+b110001 @
+b10010 ?
+b1111 >
+b1 =
+b101000 <
+b11001 ;
+b1000 :
+b1100 9
+b1000000 8
+b1001 7
+b111001 6
+b0 5
+b101001 4
+b110011 3
+b1010 2
+b100001 1
+b110010 0
+b100000 /
+b10011 .
+b11000 -
+b100 ,
+b11 +
+b111 *
+b1001 )
+$end
+#0
+$dumpvars
+b100000000000 b
+b0 a
+b11000 `
+b11000 _
+b100000000100 ^
+b0 ]
+b0 \
+b0 [
+b100000000000 Z
+b100000000000 Y
+b100000000011 X
+b100000001000 W
+b100100000011 V
+b100011 U
+b111000 T
+b110000 S
+b101000 R
+b11000 Q
+b11000 P
+b1000000 O
+b1100 N
+b0 M
+b11 (
+b0 '
+b0 &
+b0 %
+b0 $
+1#
+0"
+b0 !
+$end
+#5000
+1"
+#10000
+0"
+#15000
+1"
+#20000
+0"
+#25000
+1"
+#30000
+0#
+0"
+#35000
+b100000000000 !
+b100000000000 &
+b100000000000 a
+1"
+#40000
+b100000000011 b
+b1000000 `
+b100000000100 ^
+b100011 U
+b111000 T
+b110000 S
+b100000000000 [
+b110001 R
+b100000000000 Z
+b11000 Q
+b100000000011 Y
+b1000000 P
+b100000000011 X
+b1000000 O
+b100000001000 W
+b1100 N
+b100100000011 V
+b110000000 $
+b110000000 %
+0"
+#45000
+b100000000100 b
+b100011 `
+b1000 (
+b100000000011 !
+b100000000011 &
+b100000000011 a
+b1000000 _
+1"
+#50000
+b100000000100 b
+b100011 `
+b100100000011 V
+b100000001000 W
+b1100 N
+b100000000011 X
+b1000000 O
+b100000000000 Y
+b11000 P
+b100000000000 Z
+b11000 Q
+b0 [
+b101000 R
+b110000 S
+b111000 T
+b100000000100 ^
+b100011 U
+b0 $
+b0 %
+0"
+#55000
+b0 b
+b100011 `
+b0 ^
+b0 U
+b0 T
+b110010000100 \
+b110011 S
+b0 R
+b0 Z
+b100011 Q
+b100000000010 Y
+b11011 P
+b0 X
+b10011 O
+b100000000000 W
+b11001 N
+b11011 M
+b100000000010 V
+b100 (
+b11 '
+b100000000100 !
+b100000000100 &
+b100000000100 a
+b100011 _
+1"
+#60000
+b100000001100 b
+b100001 `
+b100000000010 V
+b11011 M
+b100000000000 W
+b11001 N
+b10011 O
+b100000000010 Y
+b11011 P
+b100000001100 Z
+b100001 Q
+b110010000100 \
+b110011 S
+b101 $
+b101 %
+0"
+#65000
+b100000001100 b
+b100001 `
+b110001000100 ]
+b111001 T
+b0 \
+b110001 S
+b101001 R
+b100000001100 Z
+b100001 Q
+b0 Y
+b11001 P
+b10001 O
+b0 W
+b1001 N
+b100100000000 V
+b1 M
+b1 '
+b100000001100 !
+b100000001100 &
+b100000001100 a
+b100001 _
+1"
+#70000
+b100000000011 b
+b1000000 `
+b100100000000 V
+b1 M
+b1001 N
+b10001 O
+b11001 P
+b100000000011 Z
+b1000000 Q
+b101001 R
+b110001 S
+b110001000100 ]
+b111001 T
+b1 $
+b1 %
+0"
+#75000
+b100000000000 b
+b101000 `
+b100000000000 ^
+b101000 U
+b0 ]
+b111000 T
+b110000 S
+b101000 R
+b100000000000 Z
+b11000 Q
+b100000000000 Y
+b11000 P
+b100000000011 X
+b1000000 O
+b100000001000 W
+b1100 N
+b100100000011 V
+b0 M
+b1000 (
+b0 '
+b100000000011 !
+b100000000011 &
+b100000000011 a
+b1000000 _
+1"
+#80000
+0"
+#85000
+b0 b
+b101000 `
+b101 (
+b100000000000 !
+b100000000000 &
+b100000000000 a
+b101000 _
+1"
+#90000
+0"
+#95000
+b0 !
+b0 &
+b0 a
+1"
+#100000
+0"
+#105000
+1"
+#110000
+0"
+#115000
+1"
+#120000
+0"
+#125000
+1"
+#126000

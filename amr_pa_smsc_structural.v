@@ -8,21 +8,20 @@
 module amr_pa_smsc_fsm (
     input  wire        clk,
     input  wire        rst,
-    input  wire [12:1] x,      // 12 Inputs (Sensors/Commands, 1-indexed for CSV match)
-    output wire [12:1] y       // 12 Outputs (Actuators/Status, 1-indexed for CSV match)
+    input  wire [12:1] x,      // 12 Inputs (1-indexed for CSV match)
+    output wire [12:1] y       // 12 Outputs (1-indexed for CSV match)
 );
 
     // -------------------------------------------------------------------------
-    // 1. ENCODING PARAMETERS (From Python Toolchain Output)
+    // 1. ENCODING PARAMETERS
     // -------------------------------------------------------------------------
-    parameter RV  = 4;   // Class Code bits (K=9 -> ceil(log2(9)) = 4)
+    parameter RV  = 4;   // Class Code bits (K=9)
     parameter RS  = 3;   // Max Partial State Code bits
     parameter REC = 7;   // Total Mixed State Code bits (RV + RS)
     parameter K   = 9;   // Number of Classes
 
     // -------------------------------------------------------------------------
     // 2. STATE DEFINITIONS (7-bit Final MSC)
-    // Format: {Class_Code [6:3], Partial_Code [2:0]}
     // -------------------------------------------------------------------------
     // Class 0
     localparam [REC-1:0] a17 = 7'b0000_000;
@@ -67,15 +66,16 @@ module amr_pa_smsc_fsm (
     localparam [REC-1:0] a2  = 7'b1000_000;
 
     // -------------------------------------------------------------------------
-    // 3. STATE REGISTER & INTERNAL SIGNALS
+    // 3. STATE REGISTER & INTERNAL SIGNALS (DECLARED UPFRONT)
     // -------------------------------------------------------------------------
     reg [REC-1:0] cs, ns; 
     reg [12:1] y_comb;    
+    reg [12:1] y_next_comb; // FIX: Moved declaration up to prevent "after use" error
 
-    wire [RV-1:0]  class_code   = cs[REC-1 : RS]; // Bits [6:3]
-    wire [RS-1:0]  partial_code = cs[RS-1 : 0];   // Bits [2:0]
+    wire [RV-1:0]  class_code   = cs[REC-1 : RS]; 
+    wire [RS-1:0]  partial_code = cs[RS-1 : 0];   
 
-    // Level 1 Partial Function Registers (Declared for all 9 classes)
+    // Level 1 Partial Function Registers
     reg [REC-1:0] D0_partial, D1_partial, D2_partial, D3_partial, D4_partial;
     reg [REC-1:0] D5_partial, D6_partial, D7_partial, D8_partial;
     reg [12:1]    Y0_partial, Y1_partial, Y2_partial, Y3_partial, Y4_partial;
@@ -84,7 +84,7 @@ module amr_pa_smsc_fsm (
     // Sequential Logic
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            cs     <= a1;       // Reset to initial state
+            cs     <= a1;       
             y_comb <= 12'b0;
         end else begin
             cs     <= ns;
@@ -317,28 +317,26 @@ module amr_pa_smsc_fsm (
     // =========================================================================
     // LEVEL 2: FINAL VALUE GENERATOR / MULTIPLEXER
     // =========================================================================
-    reg [REC-1:0] ns_internal;
-    reg [12:1]    y_next_comb;
-
+    // FIX: We assign 'ns' directly here instead of using 'ns_internal' + assign
     always @(*) begin
-        ns_internal = 7'b0;
+        ns = 7'b0;
         y_next_comb = 12'b0;
         
         case (class_code)
-            4'b0000: begin ns_internal = D0_partial; y_next_comb = Y0_partial; end
-            4'b0001: begin ns_internal = D1_partial; y_next_comb = Y1_partial; end
-            4'b0010: begin ns_internal = D2_partial; y_next_comb = Y2_partial; end
-            4'b0011: begin ns_internal = D3_partial; y_next_comb = Y3_partial; end
-            4'b0100: begin ns_internal = D4_partial; y_next_comb = Y4_partial; end
-            4'b0101: begin ns_internal = D5_partial; y_next_comb = Y5_partial; end
-            4'b0110: begin ns_internal = D6_partial; y_next_comb = Y6_partial; end
-            4'b0111: begin ns_internal = D7_partial; y_next_comb = Y7_partial; end
-            4'b1000: begin ns_internal = D8_partial; y_next_comb = Y8_partial; end
-            default: begin ns_internal = a1; y_next_comb = 12'b0; end // Safe fallback
+            4'b0000: begin ns = D0_partial; y_next_comb = Y0_partial; end
+            4'b0001: begin ns = D1_partial; y_next_comb = Y1_partial; end
+            4'b0010: begin ns = D2_partial; y_next_comb = Y2_partial; end
+            4'b0011: begin ns = D3_partial; y_next_comb = Y3_partial; end
+            4'b0100: begin ns = D4_partial; y_next_comb = Y4_partial; end
+            4'b0101: begin ns = D5_partial; y_next_comb = Y5_partial; end
+            4'b0110: begin ns = D6_partial; y_next_comb = Y6_partial; end
+            4'b0111: begin ns = D7_partial; y_next_comb = Y7_partial; end
+            4'b1000: begin ns = D8_partial; y_next_comb = Y8_partial; end
+            default: begin ns = a1; y_next_comb = 12'b0; end // Safe fallback
         endcase
     end
 
-    assign ns = ns_internal;
+    // FIX: Removed 'assign ns = ns_internal;' because ns is a reg driven by always@(*)
     assign y  = y_comb;
 
 endmodule
