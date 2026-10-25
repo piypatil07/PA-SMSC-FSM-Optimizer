@@ -1,0 +1,25 @@
+# Python virtual environment
+venv/
+env/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Vivado / FPGA Junk
+*.log
+*.jou
+*.zip
+*.html
+*.xml
+*.xpr
+*.hwdef
+*.bit
+*.ltx
+.Xil/
+*.cache/
+*.runs/
+*.srcs/
+*.sim/
+*.ip_user_files/
